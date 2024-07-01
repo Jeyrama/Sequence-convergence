@@ -78,3 +78,5 @@ function convergence(n) {
     if (matchN > 0) return matchN
   }
 }
+
+// or
