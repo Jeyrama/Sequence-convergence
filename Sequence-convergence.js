@@ -28,3 +28,53 @@ In the case above:
 
 
 // Solution 
+
+/**
+ * Returns the next number in the sequence
+ * @param {number} n
+ */
+function next(n) {
+  const digits = n.toString();
+  
+  // handle single digit
+  if (digits.length === 1) {
+    return n + n;
+  }
+  
+  // handle multiple digit values
+  return digits.split('').reduce((acc, digit) => {
+    return acc * (parseInt(digit) || 1)
+  }, 1) + n
+}
+
+/**
+ * Gets length of the test sequence when the it converges on the base sequence
+ * @param {number} n - test sequence base
+ */
+function convergence(n) {
+  // initialize series counters
+  let counterOne = 1
+  let counterN = n
+  
+  // initialize series containers
+  const seriesOne = [counterOne]
+  const seriesN = [counterN]
+  
+  while (true) {
+    // update the series counters
+    counterOne = next(counterOne)
+    counterN = next(counterN)
+    
+    // update the series containers
+    seriesOne.push(counterOne)
+    seriesN.push(counterN)
+    
+    // check for matches in either series
+    const matchOne = seriesOne.indexOf(counterN)
+    const matchN = seriesN.indexOf(counterOne)
+    
+    // return test sequence length by type of match
+    if (matchOne > 0) return seriesOne.length - 1
+    if (matchN > 0) return matchN
+  }
+}
