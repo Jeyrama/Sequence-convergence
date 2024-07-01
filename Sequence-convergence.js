@@ -80,3 +80,24 @@ function convergence(n) {
 }
 
 // or
+
+function convergence(number) {
+	let baseSeries = [1, 2];
+  
+  const getNext = (n) => {
+  	if (n < 10) {
+    	return n + n;
+    }
+    return n + [...n + ''].reduce((a, b) => a * (+b || 1));
+  };
+  
+  for (let idx = 0; idx < Number.MAX_SAFE_INTEGER; idx++) {
+  	while (baseSeries[1] < number) {
+    	baseSeries = [baseSeries[1], getNext(baseSeries[1])];
+    }
+    if (baseSeries.includes(number)) {
+    	return idx;
+    } 
+    number = getNext(number);
+  }
+}
