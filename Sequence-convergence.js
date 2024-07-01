@@ -25,3 +25,6 @@ In the case above:
   convergence(3) = 5, the length of [3, 6, 12, 14, 18]. 
   convergence(15) = 2, the length of [15, 20]. 
 */
+
+
+// Solution 
